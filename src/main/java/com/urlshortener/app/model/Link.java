@@ -1,31 +1,90 @@
 package com.urlshortener.app.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.AllArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
-import javax.persistence.Index;
-import java.util.Date;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "Link", indexes = @Index(columnList = "shortUrl", unique = true))
-public class Link {
+@Table(name = "link",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"shortUrl"}),
+                @UniqueConstraint(columnNames = {"url"}),
+                @UniqueConstraint(columnNames = {"shortUrl", "url"})
+        }
+)
+public class Link implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
-    @NonNull
     private String shortUrl;
-    @NonNull
     private String url;
-    @NonNull
-    private Date createdDate;
+    @CreationTimestamp
+    private Timestamp createdAt;
+    @UpdateTimestamp
+    private Timestamp updatedAt;
+    private UUID userId;
+
+    public Link(UUID id, String shortUrl, String url, Timestamp createdAt, Timestamp updatedAt, UUID userId) {
+        this.id = id;
+        this.shortUrl = shortUrl;
+        this.url = url;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.userId = userId;
+    }
+
+    public Link() {
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getShortUrl() {
+        return shortUrl;
+    }
+
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
 }

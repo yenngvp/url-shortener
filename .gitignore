@@ -56,3 +56,4 @@ build/
 !**/src/webapp/npm-debug.log*
 !**/src/webapp/yarn-debug.log*
 !**/src/webapp/yarn-error.log*
+/node_modules

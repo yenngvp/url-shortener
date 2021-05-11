@@ -19,7 +19,13 @@ class LoadDatabase {
     CommandLineRunner initDatabase(SettingRepository repository) {
         return args -> {
             // Create a sample setting record
-            log.info("Preloading 'setting' " + repository.save(new Setting(UUID.fromString("09725810-ee47-4a48-977d-0ac9fdc39292"), "http://localhost")));
+            log.info("Preloading 'setting' " +
+                    repository.save(new Setting(
+                            UUID.fromString("09725810-ee47-4a48-977d-0ac9fdc39292"),
+                            "http://localhost",
+                            Constant.FAKE_USER_ID)
+                    )
+            );
         };
     }
 }
