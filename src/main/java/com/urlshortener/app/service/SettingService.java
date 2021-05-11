@@ -22,6 +22,10 @@ public class SettingService {
         return this.settingRepository.findAll();
     }
 
+    public Setting getCurrentUserSetting() {
+        return this.settingRepository.findTopByUserId(Constant.FAKE_USER_ID);
+    }
+
     public Setting updateSetting(String domain) {
         Setting existingSetting = this.settingRepository.findTopByUserId(Constant.FAKE_USER_ID);
         if (existingSetting == null) {

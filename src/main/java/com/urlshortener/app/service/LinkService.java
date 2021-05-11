@@ -32,7 +32,7 @@ public class LinkService {
     }
 
     public List<Link> findAll() {
-        return this.linkRepository.findAll();
+        return this.linkRepository.findAllByOrderByCreatedAtDesc();
     }
 
     public Link generateShortLink(String url) {
@@ -68,10 +68,10 @@ public class LinkService {
         }
 
         // TODO: load and save this value to database for more efficiency
-        int shortUrlLength = MIN_SHORT_URL_ID_LENGTH;
+        int randomByteLength = MIN_SHORT_URL_ID_LENGTH - 1;
         int round = 0;
         do {
-            String randomString = this.generateRandomString(shortUrlLength);
+            String randomString = this.generateRandomString(randomByteLength);
             String shortUrl = userSetting.getDomain() + "/" + randomString;
             if (!this.linkRepository.existsByShortUrl(shortUrl)) {
                 return shortUrl;
@@ -83,7 +83,7 @@ public class LinkService {
             }
 
             if (round > MAX_URL_CONFLICT_ROUND_CHECK_PER_LENGTH_RATE) {
-                shortUrlLength++;
+                randomByteLength++;
             }
         } while (true);
     }

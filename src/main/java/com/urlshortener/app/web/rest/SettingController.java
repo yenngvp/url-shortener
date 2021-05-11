@@ -19,8 +19,8 @@ public class SettingController {
     }
 
     @GetMapping("/settings")
-    public Collection<Setting> getSettings() {
-        return this.settingService.findAll();
+    public SettingDTO getSetting() {
+        return SettingDTO.fromSetting(this.settingService.getCurrentUserSetting());
     }
 
     @PostMapping("/settings")
