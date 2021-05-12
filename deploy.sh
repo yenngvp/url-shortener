@@ -1,5 +1,5 @@
 
-echo '================= Start build, deploy, and starting URLShortener application ==================='
+echo '================= Start build, deploy, and start URLShortener application ==================='
 echo "Step 1:   Stopping & Removing running containers...";
 docker stop url-shortener-client;
 docker rm url-shortener-client;
