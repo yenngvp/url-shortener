@@ -36,25 +36,25 @@ build/
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/src/webapp/node_modules
-/src/webapp/.pnp
-/src/webapp/.pnp.js
+/src/main/webapp/node_modules
+/src/main/webapp/.pnp
+/src/main/webapp/.pnp.js
 
 # testing
-/src/webapp/coverage
+/src/main/webapp/coverage
 
 # production
-/src/webapp/build
+/src/main/webapp/build
 
 # misc
-/src/webapp/.DS_Store
-/src/webapp/.env.local
-/src/webapp/.env.development.local
-/src/webapp/.env.test.local
-/src/webapp/.env.production.local
+/src/main/webapp/.DS_Store
+/src/main/webapp/.env.local
+/src/main/webapp/.env.development.local
+/src/main/webapp/.env.test.local
+/src/main/webapp/.env.production.local
 
-/src/webapp/npm-debug.log*
-/src/webapp/yarn-debug.log*
-/src/webapp/yarn-error.log*
+/src/main/webapp/npm-debug.log*
+/src/main/webapp/yarn-debug.log*
+/src/main/webapp/yarn-error.log*
 
 /node_modules
